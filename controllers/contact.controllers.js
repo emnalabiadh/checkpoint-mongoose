@@ -27,20 +27,46 @@ exports.addContact = async (req, res) => {
     res.status(400).send({ msg: "Can not add Contact !!!", error });
   }
 };**/
+//const addContact = async (req, res) => {
+//try {
+//  const { name, email, phone } = req.body;
+
+// hanfling errors : name and email required
+//if (!name || !email) {
+//   res.status(400).send({ msg: "Name & email are required  !!!" });
+// return;
+// }
+// hanfling errors : email is unique
+//const contact = await Contact.findOne({ email });
+
+//if (contact) {
+//res.status(400).send({ msg: "contact already exist !!" });
+//return;
+//}
+//const newContact = new Contact({
+//name,
+//email,
+//phone,
+//});
+
+//await newContact.save();
+//res.status(200).send({ msg: "Contact added successfully ...", newContact });
+// } catch (error) {
+// res.status(400).send({ msg: "Can not add Contact !!!", error });
+//}
+//};
+
+//module.exports = controllers = { addContact };
 const addContact = async (req, res) => {
   try {
     const { name, email, phone } = req.body;
-
-    // hanfling errors : name and email required
     if (!name || !email) {
-      res.status(400).send({ msg: "Name & email are required  !!!" });
+      res.status(400).send({ msg: "name && email are required !!!" });
       return;
     }
-    // hanfling errors : email is unique
     const contact = await Contact.findOne({ email });
-
     if (contact) {
-      res.status(400).send({ msg: "contact already exist !!" });
+      res.status(400).send({ msg: "Contact already exist !!" });
       return;
     }
     const newContact = new Contact({
@@ -48,12 +74,10 @@ const addContact = async (req, res) => {
       email,
       phone,
     });
-
     await newContact.save();
-    res.status(200).send({ msg: "Contact added successfully ...", newContact });
+    res.status(200).send({ msg: "contact added successfully...", newContact });
   } catch (error) {
-    res.status(400).send({ msg: "Can not add Contact !!!", error });
+    res.status(400).send({ msg: "can not add Contact!!!", error });
   }
 };
-
 module.exports = controllers = { addContact };

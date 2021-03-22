@@ -42,10 +42,15 @@ const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 
 const contactSchema = new schema({
-  email: {
+  name: {
     type: String,
     required: true,
+  },
+  email: {
+    type: String,
+    require: true,
     unique: true,
   },
   phone: Number,
 });
+module.exports = Contact = mongoose.model("contact", contactSchema);
